@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
-
+import react from 'react';
+import Navbar from './components/Navbar/Navbar';
 function App() {
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <Navbar/>
+
+      <Switch>
+        <Route path = '/' component = {Home} exact = {true} />
+        <Route path = '/movie/id:' component = {lol}/>
+        <Route path = '/movies' component = {movies}/>
+        <Route path = "/favorites" component={favorites} />
+        <Route path = '/results' component = {Results} />
+        <Route path = '/serie/id:' component = {Serie} />
+        <Route path = '/series' component = {Series} />
+        <Route path = '' component = {error}/>
+      </Switch>  
+
+    <Footer/>
+    </React.Fragment>
   );
 }
 
