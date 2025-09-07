@@ -39,7 +39,7 @@ class Cards extends Component {
   render() {
     return (
       <>
-        <h2 className="alert alert-primary">Popular movies this week</h2>
+        <h2 className="alert alert-primary">Las peliculas mejor valorada</h2>
         <section className="row cards" id="movies">
           {this.state.data && this.state.data.length > 0
             ? this.state.data.map((movie) => (

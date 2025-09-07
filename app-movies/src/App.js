@@ -1,5 +1,8 @@
-import react from 'react';
+import React from 'react';
+import { Switch, Route } from 'react-router-dom'
 import Navbar from './components/Navbar/Navbar';
+import Footer from './components/Footer/Footer';
+import Home from './screens/Home/Home';
 function App() {
 
 
@@ -9,13 +12,7 @@ function App() {
 
       <Switch>
         <Route path = '/' component = {Home} exact = {true} />
-        <Route path = '/movie/id:' component = {lol}/>
-        <Route path = '/movies' component = {movies}/>
-        <Route path = "/favorites" component={favorites} />
-        <Route path = '/results' component = {Results} />
-        <Route path = '/serie/id:' component = {Serie} />
-        <Route path = '/series' component = {Series} />
-        <Route path = '' component = {error}/>
+        
       </Switch>  
 
     <Footer/>
