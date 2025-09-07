@@ -20,7 +20,7 @@ function Navbar() {
         {
             title: 'Favoritas',
             url: '/favorites'
-        }
+        },
     ]
 
     return(
