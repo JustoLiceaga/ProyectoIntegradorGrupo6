@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import './style.css'
+import Formulario from "../Formulario/Formulario";
 
 function Navbar() {
 
@@ -28,16 +29,7 @@ function Navbar() {
             <ul className="nav nav-tabs my-4">
                 {data.map((ite, idx) => <li className="nav-item" key = {ite + idx}><Link to = {`${ite.url}`}>{ite.title}</Link></li>)}
             </ul>
-            <form className="search-form" action="results.html" method="get">
-            <input 
-                type="text" 
-                className="" 
-                name="searchData" 
-                placeholder="Buscar..." 
-                value=""
-            />
-            <button type="submit" className="btn btn-success btn-sm">Buscar</button>
-        </form>
+            {Formulario}
         </nav>
     )
 }

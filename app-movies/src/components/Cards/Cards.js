@@ -33,7 +33,7 @@ class Cards extends Component {
   verDescripcion = () => {
     this.setState({
       verMas: this.state.verMas === false ? true : false,
-      favoritos: this.state.favoritos === 'Ver descripción' ? "Ver descripción" : 'Ver menos',
+      textoBoton: this.state.textoBoton === 'Ver descripción' ? "Ver menos" : 'Ver descripción',
     });
   };
 

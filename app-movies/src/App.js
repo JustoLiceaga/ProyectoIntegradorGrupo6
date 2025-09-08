@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import Home from './screens/Home/Home';
+import Resultados from './screens/Resultados/Resultados';
 function App() {
 
 
