@@ -10,7 +10,7 @@ class Cards extends Component {
       favoritos: 'Agregar a favoritos',
       textoBoton: "Ver descripción",
       data: [],
-      verMas: false,
+      verMas: {},
     }
   }
 
@@ -43,7 +43,7 @@ class Cards extends Component {
         <h2 className="alert alert-primary">Las peliculas mejor valoradas</h2>
         <section className="row cards" id="movies">
           {this.state.data && this.state.data.length > 0
-            ? this.state.data.map((movie) => (
+            ? this.state.data.map((movie, idx) => (
               <article className="single-card-movie" key={movie.id}>
                 <img src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} className="card-img-top" alt={movie.title} />
                 <div className="cardBody">
@@ -68,7 +68,11 @@ class Cards extends Component {
               </article>
             ))
             : "cargando..."}
+
         </section>
+        <Link to={`/movie`} className="btn btn-primary">
+          Ver más
+        </Link>
       </>
     );
   }

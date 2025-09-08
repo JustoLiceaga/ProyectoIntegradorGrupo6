@@ -29,7 +29,7 @@ function Navbar() {
             <ul className="nav nav-tabs my-4">
                 {data.map((ite, idx) => <li className="nav-item" key = {ite + idx}><Link to = {`${ite.url}`}>{ite.title}</Link></li>)}
             </ul>
-            {Formulario}
+            <Formulario />
         </nav>
     )
 }

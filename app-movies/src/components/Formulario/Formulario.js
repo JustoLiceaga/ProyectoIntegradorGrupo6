@@ -26,7 +26,11 @@ class Formulario extends Component {
 
     render() {
         return( <form onSubmit = {(event) => this.prevenirDefault(event)}>
-            <imput type="text" onChange = {(event) => this.controlarCambios(event)} value = {this.state.busqueda} placeholder="Buscar..." />
+            <input 
+            type="text"
+            onChange = {(event) => this.controlarCambios(event)} 
+            value = {this.state.busqueda} 
+            placeholder="Buscar..." />
             <button type="submit">Buscar</button>
             </form>
         )
