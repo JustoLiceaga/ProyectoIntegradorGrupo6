@@ -12,7 +12,7 @@ function App() {
 
       <Switch>
         <Route path = '/' component = {Home} exact = {true} />
-        
+
       </Switch>  
 
     <Footer/>
