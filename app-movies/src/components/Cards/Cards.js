@@ -18,9 +18,15 @@ class Cards extends Component {
 
     fetch("https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&api_key=0030cb6d5a827e996db3c37d4e1cadf3")
       .then(res => res.json())
-      .then(data => this.setState({
-        data: data.results,
-      }))
+      .then((data) => {
+        console.log(data);
+        const resultados = data.results
+        const resultadosFiltrados = resultados.filter((pelis, index) => index < 4)
+
+        this.setState({
+          data: resultadosFiltrados
+        })
+      })
       .catch(err => console.log(err))
   }
 
@@ -49,9 +55,7 @@ class Cards extends Component {
                 <div className="cardBody">
                   <h5 className="card-title">{movie.title}</h5>
                   {this.state.verMas ? <p className="card-text">{movie.overview}</p> : null}
-                  <Link to={`/movie/${movie.id}`} className="btn btn-primary">
-                    Ir a detalle
-                  </Link>
+                  
                   <button
                     className="btn btn-secondary"
                     onClick={() => this.verDescripcion()}
@@ -64,6 +68,9 @@ class Cards extends Component {
                   >
                     {this.state.favoritos}
                   </button>
+                  <Link to={`/movie/${movie.id}`} className="btn btn-primary">
+                    Ir a detalle
+                  </Link>
                 </div>
               </article>
             ))
