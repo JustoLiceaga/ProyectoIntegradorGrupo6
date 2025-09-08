@@ -7,7 +7,6 @@ function Home() {
     return(
         <React.Fragment>
         <h1>Materia Gris Movies</h1>
-        <p>prueba de cambios</p>
     <main>
         <Cards/>
         <CardsTopRated/>
