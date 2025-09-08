@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import { withRouter } from "react-router-dom";
 
+
 class Formulario extends Component {
     constructor(props) {
         super(props)
@@ -24,10 +25,11 @@ class Formulario extends Component {
     }
 
     render() {
-        return <form onSubmit = {(event) => this.prevenirDefault(event)}>
+        return( <form onSubmit = {(event) => this.prevenirDefault(event)}>
             <imput type="text" onChange = {(event) => this.controlarCambios(event)} value = {this.state.busqueda} placeholder="Buscar..." />
             <button type="submit">Buscar</button>
-        </form>
+            </form>
+        )
     }
 }
 
