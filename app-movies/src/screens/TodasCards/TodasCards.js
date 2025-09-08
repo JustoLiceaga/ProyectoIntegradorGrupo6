@@ -8,7 +8,7 @@ function TodasCards() {
         <React.Fragment>
         <h1>Más películas</h1>
     <main>
-        <CardsAll/>
+        <CardsAll />
     </main>
     </React.Fragment>
 

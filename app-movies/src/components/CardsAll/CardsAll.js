@@ -15,7 +15,7 @@ class CardsAll extends Component {
 
   componentDidMount() {
 
-    fetch("https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&api_key=0030cb6d5a827e996db3c37d4e1cadf3")
+    fetch(this.props.api)
       .then(res => res.json())
       .then(data => this.setState({
         data: data.results,
@@ -39,7 +39,7 @@ class CardsAll extends Component {
   render() {
     return (
       <>
-        <h2 className="alert alert-primary">Popular movies this week</h2>
+        <h2 className="alert alert-primary">{this.props.title}</h2>
         <section className="row cards" id="movies">
           {this.state.data && this.state.data.length > 0
             ? this.state.data.map((movie) => (

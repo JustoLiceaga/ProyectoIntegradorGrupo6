@@ -46,7 +46,7 @@ class Cards extends Component {
   render() {
     return (
       <>
-        <h2 className="alert alert-primary">Popular movies this week</h2>
+        <h2 className="alert alert-primary"> Peliculas populares de la semana</h2>
         <section className="row cards" id="movies">
           {this.state.data && this.state.data.length > 0
             ? this.state.data.map((movie) => (
@@ -76,7 +76,7 @@ class Cards extends Component {
             ))
             : "cargando..."}
         </section>
-        <Link to={`/peliculaspopulares`} className="btn btn-primary">
+        <Link to={`/MasPeliculas`} className="btn btn-primary">
           Ver más
         </Link>
       </>

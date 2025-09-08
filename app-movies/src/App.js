@@ -18,7 +18,7 @@ function App() {
       <Switch>
         <Route path = '/' component = {Home} exact = {true} />
         <Route path = '/resultados/:query' component = {Resultados}/>
-        <Route path = '/PeliculasPopulares' component = {TodasCards}/>
+        <Route path = '/MasPeliculas' component = {TodasCards}/>
         <Route path = '' component = {error}/>
 
 

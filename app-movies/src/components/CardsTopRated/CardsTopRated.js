@@ -77,7 +77,7 @@ class Cards extends Component {
             : "cargando..."}
 
         </section>
-        <Link to={`/peliculaspopulares`} className="btn btn-primary">
+        <Link to={`/MasPeliculas`} className="btn btn-primary">
           Ver más
         </Link>
       </>
