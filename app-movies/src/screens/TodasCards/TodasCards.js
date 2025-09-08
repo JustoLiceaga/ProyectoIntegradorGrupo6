@@ -3,7 +3,7 @@ import CardsAll from "../../components/CardsAll/CardsAll";
 
 
 
-function CardsAll() {
+function TodasCards() {
     return(
         <React.Fragment>
         <h1>Más películas</h1>
@@ -16,4 +16,4 @@ function CardsAll() {
 }
 
 
-export default CardsAll 
+export default TodasCards 
