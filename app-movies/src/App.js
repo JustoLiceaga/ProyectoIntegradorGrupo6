@@ -12,6 +12,8 @@ function App() {
 
       <Switch>
         <Route path = '/' component = {Home} exact = {true} />
+        <Route path = '/resultados/:query' component = {Resultados}/>
+
 
       </Switch>  
 
