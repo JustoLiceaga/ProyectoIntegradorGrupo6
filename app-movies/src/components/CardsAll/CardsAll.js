@@ -6,10 +6,10 @@ class CardsAll extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      favoritos: 'Agregar a favoritos',
-      textoBoton: "Ver descripción",
+      favoritos: null,
       data: [],
-      verMas: false,
+      verMas: null,
+      numeroDePagina: 1,
     }
   }
 
@@ -19,22 +19,34 @@ class CardsAll extends Component {
       .then(res => res.json())
       .then(data => this.setState({
         data: data.results,
+        numeroDePagina: this.state.numeroDePagina + 1,
       }))
       .catch(err => console.log(err))
   }
 
-  cambiarEstado = () => {
+  cambiarEstado = (id) => {
     this.setState({
-      favoritos: this.state.favoritos === 'Agregar a favoritos' ? "Quitar de favoritos" : 'Agregar a favoritos',
+      favoritos: this.state.favoritos === id ? null : id
     });
   };
 
-  verDescripcion = () => {
+  verDescripcion = (id) => {
     this.setState({
-      verMas: this.state.verMas === false ? true : false,
-      textoBoton: this.state.textoBoton === 'Ver descripción' ? "Ver menos" : 'Ver descripción',
+      verMas: this.state.verMas === id ? null : id
     });
   };
+
+  cargarPaginaSiguiente(){
+    fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${this.state.numeroDePagina}&sort_by=popularity.desc&api_key=0030cb6d5a827e996db3c37d4e1cadf3`)
+      .then(res => res.json())
+      .then((data) => 
+        this.setState({
+          data: this.state.data.concat(data.results),
+          numeroDePagina: this.state.numeroDePagina + 1,
+        })
+      )
+      .catch(err => console.log(err))
+  }
 
   render() {
     return (
@@ -47,28 +59,30 @@ class CardsAll extends Component {
                 <img src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} className="card-img-top" alt={movie.title} />
                 <div className="cardBody">
                   <h5 className="card-title">{movie.title}</h5>
-                  {this.state.verMas ? <p className="card-text">{movie.overview}</p> : null}
+                  {this.state.verMas === movie.id ? (
+                    <p className="card-text">{movie.overview}</p>
+                  ) : null}
+                  <button
+                    className="btn btn-secondary"
+                    onClick={() => this.verDescripcion(movie.id)}
+                  >
+                    {this.state.verMas === movie.id ? "Ver menos" : "Ver descripción"}
+                  </button>
+                  <button
+                    onClick={() => this.cambiarEstado(movie.id)}
+                    className="btn alert-primary"
+                  >
+                    {this.state.favoritos === movie.id ? "Quitar de favoritos" : 'Agregar a favoritos'}
+                  </button>
                   <Link to={`/movie/${movie.id}`} className="btn btn-primary">
                     Ir a detalle
                   </Link>
-                  <button
-                    className="btn btn-secondary"
-                    onClick={() => this.verDescripcion()}
-                  >
-                    {this.state.textoBoton}
-                  </button>
-                  <button
-                    onClick={() => this.cambiarEstado()}
-                    className="btn alert-primary"
-                  >
-                    {this.state.favoritos}
-                  </button>
                 </div>
               </article>
             ))
             : "cargando..."}
         </section>
-        <p className="btn btn-primary"> Cargar mas peliculas </p>
+        <button onClick={()=> this.cargarPaginaSiguiente()} className="btn btn-primary"> Cargar mas peliculas </button>
       </>
     );
   }
