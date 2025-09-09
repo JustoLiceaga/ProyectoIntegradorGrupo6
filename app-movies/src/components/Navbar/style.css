@@ -21,6 +21,9 @@ nav form {
   display: flex;
   gap: 8px;
 }
-
+.logo{
+  width: 120px;
+  height: auto;
+}
 
 

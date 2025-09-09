@@ -11,12 +11,12 @@ function Navbar() {
             url: '/'
         },
         {
-            title: 'Películas',
-            url: '/movies'
+            title: 'Películas populares',
+            url: '/MasPeliculas'
         },
         {
-            title: 'Series',
-            url: '/series'
+            title: 'Películas mejor valoradas',
+            url: '/MejorValoradas'
         },
         {
             title: 'Favoritas',
@@ -26,6 +26,7 @@ function Navbar() {
 
     return(
         <nav>
+            <img src="/images/logo.png" alt="logo" className="logo"/>
             <ul className="nav nav-tabs my-4">
                 {data.map((ite, idx) => <li className="nav-item" key = {ite + idx}><Link to = {`${ite.url}`}>{ite.title}</Link></li>)}
             </ul>
