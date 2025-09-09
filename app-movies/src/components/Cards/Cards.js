@@ -7,10 +7,9 @@ class Cards extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      favoritos: 'Agregar a favoritos',
-      textoBoton: "Ver descripción",
+      favoritos: null,
       data: [],
-      verMas: false,
+      verMas: null,
     }
   }
 
@@ -30,16 +29,15 @@ class Cards extends Component {
       .catch(err => console.log(err))
   }
 
-  cambiarEstado = () => {
+  cambiarEstado = (id) => {
     this.setState({
-      favoritos: this.state.favoritos === 'Agregar a favoritos' ? "Quitar de favoritos" : 'Agregar a favoritos',
+      favoritos: this.state.favoritos === id ? null : id
     });
   };
 
-  verDescripcion = () => {
+  verDescripcion = (id) => {
     this.setState({
-      verMas: this.state.verMas === false ? true : false,
-      textoBoton: this.state.textoBoton === 'Ver descripción' ? "Ver menos" : 'Ver descripción',
+      verMas: this.state.verMas === id ? null : id
     });
   };
 
@@ -54,19 +52,20 @@ class Cards extends Component {
                 <img src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} className="card-img-top" alt={movie.title} />
                 <div className="cardBody">
                   <h5 className="card-title">{movie.title}</h5>
-                  {this.state.verMas ? <p className="card-text">{movie.overview}</p> : null}
-                  
+                  {this.state.verMas === movie.id ? (
+                    <p className="card-text">{movie.overview}</p>
+                  ) : null}
                   <button
                     className="btn btn-secondary"
-                    onClick={() => this.verDescripcion()}
+                    onClick={() => this.verDescripcion(movie.id)}
                   >
-                    {this.state.textoBoton}
+                    {this.state.verMas === movie.id ? "Ver menos" : "Ver descripción"}
                   </button>
                   <button
-                    onClick={() => this.cambiarEstado()}
+                    onClick={() => this.cambiarEstado(movie.id)}
                     className="btn alert-primary"
                   >
-                    {this.state.favoritos}
+                    {this.state.favoritos === movie.id ? "Quitar de favoritos" : 'Agregar a favoritos'}
                   </button>
                   <Link to={`/movie/${movie.id}`} className="btn btn-primary">
                     Ir a detalle
