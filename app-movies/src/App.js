@@ -6,6 +6,7 @@ import Home from './screens/Home/Home';
 import Resultados from './screens/Resultados/Resultados';
 import error from './screens/404/404';
 import TodasCards from './screens/TodasCards/TodasCards';
+import MejorValoradas from './screens/MejorValoradas/MejorValoradas';
 
 
 function App() {
@@ -18,7 +19,8 @@ function App() {
       <Switch>
         <Route path = '/' component = {Home} exact = {true} />
         <Route path = '/resultados/:query' component = {Resultados}/>
-        <Route path = '/MasPeliculas' component = {TodasCards}/>
+        <Route path = '/PeliculasPopulares' component = {TodasCards}/>
+        <Route path = '/PeliculasMejorValoradas' component = {MejorValoradas}/>
         <Route path = '' component = {error}/>
 
 

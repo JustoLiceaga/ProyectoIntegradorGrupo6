@@ -2,30 +2,25 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import './style.css'
 
-
-class Cards extends Component {
+class CardsValoradas extends Component {
   constructor(props) {
     super(props);
     this.state = {
       favoritos: null,
       data: [],
       verMas: null,
+      numeroDePagina: 1,
     }
   }
 
   componentDidMount() {
 
-    fetch("https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&api_key=0030cb6d5a827e996db3c37d4e1cadf3")
+    fetch(this.props.api)
       .then(res => res.json())
-      .then((data) => {
-        console.log(data);
-        const resultados = data.results
-        const resultadosFiltrados = resultados.filter((pelis, index) => index < 4)
-
-        this.setState({
-          data: resultadosFiltrados
-        })
-      })
+      .then(data => this.setState({
+        data: data.results,
+        numeroDePagina: this.state.numeroDePagina + 1,
+      }))
       .catch(err => console.log(err))
   }
 
@@ -41,10 +36,22 @@ class Cards extends Component {
     });
   };
 
+  cargarPaginaSiguiente(){
+    fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${this.state.numeroDePagina}&sort_by=vote_average.desc&without_genres=99,10755&vote_count.gte=200&api_key=0030cb6d5a827e996db3c37d4e1cadf3`)
+      .then(res => res.json())
+      .then((data) => 
+        this.setState({
+          data: this.state.data.concat(data.results),
+          numeroDePagina: this.state.numeroDePagina + 1,
+        })
+      )
+      .catch(err => console.log(err))
+  }
+
   render() {
     return (
       <>
-        <h2 className="alert alert-primary"> Peliculas populares de la semana</h2>
+        <h2 className="alert alert-primary">{this.props.title}</h2>
         <section className="row cards" id="movies">
           {this.state.data && this.state.data.length > 0
             ? this.state.data.map((movie) => (
@@ -75,12 +82,10 @@ class Cards extends Component {
             ))
             : "cargando..."}
         </section>
-        <Link to={`/PeliculasPopulares`} className="btn btn-primary">
-          Ver más
-        </Link>
+        <button onClick={()=> this.cargarPaginaSiguiente()} className="btn btn-primary"> Cargar mas peliculas </button>
       </>
     );
   }
 }
 
-export default Cards;
+export default CardsValoradas;
