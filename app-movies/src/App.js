@@ -7,6 +7,8 @@ import Resultados from './screens/Resultados/Resultados';
 import error from './screens/404/404';
 import TodasCards from './screens/TodasCards/TodasCards';
 import MejorValoradas from './screens/MejorValoradas/MejorValoradas';
+import DetallePopular from './screens/DetallePopular/DetallePopular';
+import DetalleMejorValorado from './screens/DetalleMejorValorado/DetalleMejorValorado';
 
 
 function App() {
@@ -21,6 +23,9 @@ function App() {
         <Route path = '/resultados/:query' component = {Resultados}/>
         <Route path = '/PeliculasPopulares' component = {TodasCards}/>
         <Route path = '/PeliculasMejorValoradas' component = {MejorValoradas}/>
+        <Route path = '/PeliculasPopulare/:id' component = {DetallePopular}/>
+        <Route path = '/PeliculasMejorValorada/:id' component = {DetalleMejorValorado}/>
+
         <Route path = '' component = {error}/>
 
 
