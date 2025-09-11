@@ -1,29 +1,42 @@
-
 nav {
   display: flex;
   justify-content: space-between; 
   align-items: center;
-  padding: 10px 20px;
-  background: #f8f9fa; 
-  border-radius: 8px;
+  padding: 12px 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* sombra sutil */
 }
 
 nav ul {
   display: flex;
-  gap: 15px;
-  margin: 0;
-  padding: 0;
+  gap: 25px;
 }
 
+nav ul li a {
+  color: #333333;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
 
+nav ul li a {
+  background-color: #107f33;
+  color: #ffffff;
+}
 
 nav form {
   display: flex;
-  gap: 8px;
+  gap: 10px;
 }
+
+nav form button {
+  padding: 6px 12px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 6px;
+}
+
 .logo{
-  width: 120px;
-  height: auto;
+  width: 130px;
 }
-
-
