@@ -10,6 +10,7 @@ import MejorValoradas from './screens/MejorValoradas/MejorValoradas';
 import DetallePopular from './screens/DetallePopular/DetallePopular';
 import DetalleMejorValorado from './screens/DetalleMejorValorado/DetalleMejorValorado';
 import SearchResults from './screens/SearchResults/SearchResults';
+import Favorites from './screens/Favorites/Favorites';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path = '/PeliculasMejorValoradas' component = {MejorValoradas}/>
         <Route path = '/PeliculasPopulare/:id' component = {DetallePopular}/>
         <Route path = '/PeliculasMejorValorada/:id' component = {DetalleMejorValorado}/>
+        <Route path = '/favorites' component = {Favorites} ></Route>
 
         <Route path = '' component = {error}/>
 
