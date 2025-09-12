@@ -91,6 +91,7 @@ ul, ol {
 .alert-primary {
   background-color: #107f33;
   color: #fff;
+  margin-bottom: 10px;
 }
 
 .btn-primary {

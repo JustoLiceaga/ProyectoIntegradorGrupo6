@@ -3,12 +3,13 @@ import { Switch, Route } from 'react-router-dom'
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import Home from './screens/Home/Home';
-import Resultados from './screens/Resultados/Resultados';
+
 import error from './screens/404/404';
 import TodasCards from './screens/TodasCards/TodasCards';
 import MejorValoradas from './screens/MejorValoradas/MejorValoradas';
 import DetallePopular from './screens/DetallePopular/DetallePopular';
 import DetalleMejorValorado from './screens/DetalleMejorValorado/DetalleMejorValorado';
+import SearchResults from './screens/SearchResults/SearchResults';
 
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
 
       <Switch>
         <Route path = '/' component = {Home} exact = {true} />
-        <Route path = '/resultados/:query' component = {Resultados}/>
+        <Route path = '/Resultados/:query' component = {SearchResults}/>
         <Route path = '/PeliculasPopulares' component = {TodasCards}/>
         <Route path = '/PeliculasMejorValoradas' component = {MejorValoradas}/>
         <Route path = '/PeliculasPopulare/:id' component = {DetallePopular}/>

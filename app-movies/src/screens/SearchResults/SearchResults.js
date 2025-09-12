@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-class Resultados extends Component {
+class SearchResults extends Component {
     constructor(props) {
         super(props)
         
@@ -12,4 +12,4 @@ class Resultados extends Component {
 }
 
 
-export default Resultados
+export default SearchResults
