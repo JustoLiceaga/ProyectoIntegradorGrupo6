@@ -1,66 +1,101 @@
 * {
-    box-sizing: border-box;
-  }
-  
-  ul,
-  ol {
-    padding: 0;
-  }
-  
-  li {
-    list-style-type: none;
-  }
-  
-  a {
-    text-decoration: none;
-    color: #000;
-  }
-  
-  body {
-    margin: 0;
-    font-family: Nunito, sans-serif;
-    background-color: #eee;
-  }
-  
-  .cards {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 0.75rem 1.25rem;
-    margin-bottom: 2%;
-  }
-  
-  .single-card-movie {
-    width: 24%;
-  }
-  
-  .card-img-top {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-    margin: 0 auto;
-    border-radius: 8px;
-  }
-  
-  .cardBody {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-  }
-  
-  .cardBody h5 {
-    margin: 0;
-    text-align: center;
-  }
-  
-  .cardBody a,
-  .cardBody button {
-    margin: 5px;
-    display: inline-block;
-  }
-  
+  background-color: rgb(93, 93, 93);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: #f0f0f0;
+  color: #222;
+}
+
+/* Links */
+a {
+  text-decoration: none;
+}
+
+/* Listas */
+ul, ol {
+  list-style: none;
+}
+
+/* Contenedor de tarjetas */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 1rem;
+  gap: 1rem; /* espacio entre tarjetas */
+}
+
+/* Tarjeta individual */
+.single-card-movie {
+  width: 24%;
+  background-color: #333333;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Imagen de la tarjeta */
+.card-img-top {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Cuerpo de la tarjeta */
+.cardBody {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: #333333;
+}
+
+.cardBody h5 {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #ffffff;
+  background: transparent;
+
+}
+
+.cardBody p {
+  background: transparent;
+  font-size: 0.9rem;
+  color: #ffffff;
+  text-align: center;
+}
+
+/* Botones */
+.cardBody button, .cardBody a.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.btn-secondary {
+  color: #fff;
+}
+
+.alert-primary {
+  background-color: #107f33;
+  color: #fff;
+}
+
+.btn-primary {
+  display: inline-block;
+  margin: 2rem auto;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  background-color: #107f33;
+  color: #fff;
+}
+

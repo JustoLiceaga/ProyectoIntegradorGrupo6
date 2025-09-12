@@ -3,13 +3,15 @@ nav {
   justify-content: space-between; 
   align-items: center;
   padding: 12px 25px;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* sombra sutil */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background-color: #333333;
 }
 
 nav ul {
   display: flex;
   gap: 25px;
+  background-color: #333333;
+
 }
 
 nav ul li a {
@@ -27,6 +29,8 @@ nav ul li a {
 nav form {
   display: flex;
   gap: 10px;
+  background-color: #333333;
+
 }
 
 nav form button {
