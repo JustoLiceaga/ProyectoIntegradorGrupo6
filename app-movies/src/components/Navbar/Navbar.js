@@ -23,7 +23,7 @@ function Navbar() {
             url: '/favorites'
         },
     ]
-
+    
     return(
         <nav>
             <img src="/images/logo.png" alt="logo" className="logo"/>
