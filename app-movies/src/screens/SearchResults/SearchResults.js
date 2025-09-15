@@ -2,14 +2,14 @@ import React from "react";
 import ResultadoBusqueda from "../../components/ResultadoBusqueda/ResultadoBusqueda";
 
 function SearchResults(props) {
-    const id = props.match.params.id;
+    const nombre = props.match.params.nombre;
     return (
 
 
         <React.Fragment>
             <h1>Resultados de búsqueda: </h1>
             <article>
-                <ResultadoBusqueda info={id} esPopular={true}></ResultadoBusqueda>
+                <ResultadoBusqueda info={nombre} ></ResultadoBusqueda>
             </article>
             
 
