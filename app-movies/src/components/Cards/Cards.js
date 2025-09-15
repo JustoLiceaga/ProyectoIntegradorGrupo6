@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import CardSola from "../CardSola/CardSola";
 import './style.css'
 
 
@@ -48,10 +49,16 @@ class Cards extends Component {
       favParse.push(id)
       let favString = JSON.stringify(favParse)
       localStorage.setItem('favoritos', favString)
+      this.setState({
+        esFavorito: true
+      })
     } else {
       fav.push(id)
       let favString = JSON.stringify(fav)
       localStorage.setItem('favoritos', favString)
+      this.setState({
+        esFavorito: true
+      })
     }
 
   }
@@ -79,37 +86,10 @@ class Cards extends Component {
         <section className="row cards" id="movies">
           {this.state.data && this.state.data.length > 0
             ? this.state.data.map((movie) => (
-              <article className="single-card-movie" key={movie.id}>
-                <img src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} className="card-img-top" alt={movie.title} />
-                <div className="cardBody">
-                  <h5 className="card-title">{movie.title}</h5>
-                  {this.state.verMas === movie.id ? (
-                    <p className="card-text">{movie.overview}</p>
-                  ) : null}
-                  <button
-                    className="btn btn-secondary"
-                    onClick={() => this.verDescripcion(movie.id)}
-                  >
-                    {this.state.verMas === movie.id ? "Ver menos" : "Ver descripción"}
-                  </button>
-                  
-                  {this.state.esFavorito ? <button onClick = {() => this.quitarDeFavoritos(movie.id)} className="btn btn-primary">
-                  Quitar de favoritos
-                </button>  
-                  : 
-                  <button onClick = {() => this.agregarAFavoritos(movie.id)} className="btn btn-primary">
-                  Agregar a favoritos
-                </button>}
-                  
-
-                  
-                  <Link to={`/peliculaspopulares/detalle${movie.id}`} className="btn btn-primary">
-                    Ir a detalle
-                  </Link>
-                </div>
-              </article>
-            ))
-            : "cargando..."}
+                <CardSola info={movie} />
+              ))
+            : <p>Cargando...</p>
+          }
         </section>
         <Link to={`/peliculaspopulares`} className="btn btn-primary">
           Ver más
