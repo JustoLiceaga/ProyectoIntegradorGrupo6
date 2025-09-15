@@ -1,32 +1,85 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import CardSola from "../CardSola/CardSola";
 import './style.css'
+
 
 class CardsValoradas extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      favoritos: null,
+      esFavorito: false,
       data: [],
-      verMas: null,
+      verMas: false,
       numeroDePagina: 1,
     }
   }
 
   componentDidMount() {
 
-    fetch(this.props.api)
+    let favLocal = localStorage.getItem('favoritos')
+    let favParse = JSON.parse(favLocal)
+    if (favParse !== null) {
+      if (favParse.includes(this.props.id)) {
+        this.setState({
+          esFavoritoavoritos: true
+        })
+      }
+      
+    }
+
+    fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${this.state.numeroDePagina}&sort_by=vote_average.desc&without_genres=99,10755&vote_count.gte=200&api_key=0030cb6d5a827e996db3c37d4e1cadf3`)
       .then(res => res.json())
-      .then(data => this.setState({
-        data: data.results,
-        numeroDePagina: this.state.numeroDePagina + 1,
-      }))
+      .then((data) => {
+        console.log(data);
+        this.setState({ data: data.results })
+      })
       .catch(err => console.log(err))
+  }
+
+  cargarPaginaSiguiente() {
+    const nuevaPagina = this.state.numeroDePagina + 1;
+    fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${nuevaPagina}&sort_by=vote_average.desc&without_genres=99,10755&vote_count.gte=200&api_key=0030cb6d5a827e996db3c37d4e1cadf3`)
+      .then(res => res.json())
+      .then((data) =>
+        this.setState({
+          data: this.state.data.concat(data.results),
+          numeroDePagina: nuevaPagina,
+        })
+      )
+      .catch(err => console.log(err))
+  }
+
+
+  agregarAFavoritos = (id) => {
+    let fav = []
+    let favLocal = localStorage.getItem('favoritos')
+    let favParse = JSON.parse(favLocal)
+
+    if (favParse !== null) {
+      favParse.push(id)
+      let favString = JSON.stringify(favParse)
+      localStorage.setItem('favoritos', favString)
+      this.setState({
+        esFavorito: true
+      })
+    } else {
+      fav.push(id)
+      let favString = JSON.stringify(fav)
+      localStorage.setItem('favoritos', favString)
+      this.setState({
+        esFavorito: true
+      })
+    }
+
+  }
+
+  quitarDeFavoritos = (id) => {
+    console.log(id)
   }
 
   cambiarEstado = (id) => {
     this.setState({
-      favoritos: this.state.favoritos === id ? null : id
+      esFavorito: this.state.esFavorito === id ? null : id
     });
   };
 
@@ -36,51 +89,17 @@ class CardsValoradas extends Component {
     });
   };
 
-  cargarPaginaSiguiente(){
-    fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${this.state.numeroDePagina}&sort_by=vote_average.desc&without_genres=99,10755&vote_count.gte=200&api_key=0030cb6d5a827e996db3c37d4e1cadf3`)
-      .then(res => res.json())
-      .then((data) => 
-        this.setState({
-          data: this.state.data.concat(data.results),
-          numeroDePagina: this.state.numeroDePagina + 1,
-        })
-      )
-      .catch(err => console.log(err))
-  }
-
   render() {
     return (
       <>
-        <h2 className="alert alert-primary">{this.props.title}</h2>
+        <h2 className="alert alert-primary"> Peliculas mejor valoradas de la semana</h2>
         <section className="row cards" id="movies">
           {this.state.data && this.state.data.length > 0
             ? this.state.data.map((movie) => (
-              <article className="single-card-movie" key={movie.id}>
-                <img src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} className="card-img-top" alt={movie.title} />
-                <div className="cardBody">
-                  <h5 className="card-title">{movie.title}</h5>
-                  {this.state.verMas === movie.id ? (
-                    <p className="card-text">{movie.overview}</p>
-                  ) : null}
-                  <button
-                    className="btn btn-secondary"
-                    onClick={() => this.verDescripcion(movie.id)}
-                  >
-                    {this.state.verMas === movie.id ? "Ver menos" : "Ver descripción"}
-                  </button>
-                  <button
-                    onClick={() => this.cambiarEstado(movie.id)}
-                    className="btn alert-primary"
-                  >
-                    {this.state.favoritos === movie.id ? "Quitar de favoritos" : 'Agregar a favoritos'}
-                  </button>
-                  <Link to={`/detalle/${movie.id}`} className="btn btn-primary">
-                    Ir a detalle
-                  </Link>
-                </div>
-              </article>
+              <CardSola info={movie} />
             ))
-            : "cargando..."}
+            : <p>Cargando...</p>
+          }
         </section>
         <button onClick={()=> this.cargarPaginaSiguiente()} className="btn btn-primary"> Cargar mas peliculas </button>
       </>

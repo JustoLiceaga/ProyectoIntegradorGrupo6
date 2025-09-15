@@ -96,7 +96,7 @@ class CardSola extends Component {
                   </Link>
                 </div>
               </article>
-            )
+            
       </>
     );
   }
