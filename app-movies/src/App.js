@@ -7,8 +7,7 @@ import Home from './screens/Home/Home';
 import error from './screens/404/404';
 import TodasCards from './screens/TodasCards/TodasCards';
 import MejorValoradas from './screens/MejorValoradas/MejorValoradas';
-import DetallePopular from './screens/DetallePopular/DetallePopular';
-import DetalleMejorValorado from './screens/DetalleMejorValorado/DetalleMejorValorado';
+import DetalleUnico from './screens/DetalleUnico/DetalleUnico';
 import SearchResults from './screens/SearchResults/SearchResults';
 import Favorites from './screens/Favorites/Favorites';
 
@@ -25,8 +24,7 @@ function App() {
         <Route path = '/results/:nombre' component = {SearchResults}/>
         <Route path = '/peliculaspopulares' component = {TodasCards}/>
         <Route path = '/peliculasmejorvaloradas' component = {MejorValoradas}/>
-        <Route path = '/peliculaspopulare/detalle/:id' component = {DetallePopular}/>
-        <Route path = '/peliculasmejorvalorada/detalle/:id' component = {DetalleMejorValorado}/>
+        <Route path = '/detalle/:id' component = {DetalleUnico}/>
         <Route path = '/favorites' component = {Favorites} ></Route>
 
         <Route path = '' component = {error}/>

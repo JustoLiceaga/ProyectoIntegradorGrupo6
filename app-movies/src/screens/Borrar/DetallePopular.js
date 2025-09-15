@@ -3,17 +3,17 @@ import PeliDetalle from "../../components/PeliDetalle/PeliDetalle";
 
 
 
-function DetalleMejorValorado(props) {
+function DetallePopular(props) {
 
     const id = props.match.params.id;
 
     return (
         <React.Fragment>
             <article >
-            <PeliDetalle info={id} esPopular={false}/>
+            <PeliDetalle info={id}/>
             </article>
         </React.Fragment>
     )
 }
 
-export default DetalleMejorValorado
+export default DetallePopular
