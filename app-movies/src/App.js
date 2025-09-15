@@ -22,11 +22,11 @@ function App() {
 
       <Switch>
         <Route path = '/' component = {Home} exact = {true} />
-        <Route path = '/Resultados/:nombre' component = {SearchResults}/>
-        <Route path = '/PeliculasPopulares' component = {TodasCards}/>
-        <Route path = '/PeliculasMejorValoradas' component = {MejorValoradas}/>
-        <Route path = '/PeliculasPopulare/:id' component = {DetallePopular}/>
-        <Route path = '/PeliculasMejorValorada/:id' component = {DetalleMejorValorado}/>
+        <Route path = '/results/:nombre' component = {SearchResults}/>
+        <Route path = '/peliculaspopulares' component = {TodasCards}/>
+        <Route path = '/peliculasmejorvaloradas' component = {MejorValoradas}/>
+        <Route path = '/peliculaspopulare/detalle/:id' component = {DetallePopular}/>
+        <Route path = '/peliculasmejorvalorada/detalle/:id' component = {DetalleMejorValorado}/>
         <Route path = '/favorites' component = {Favorites} ></Route>
 
         <Route path = '' component = {error}/>

@@ -12,11 +12,11 @@ function Navbar() {
         },
         {
             title: 'Películas populares',
-            url: '/PeliculasPopulares'
+            url: '/peliculaspopulares'
         },
         {
             title: 'Películas mejor valoradas',
-            url: '/PeliculasMejorValoradas'
+            url: '/peliculasmejorvaloradas'
         },
         {
             title: 'Favoritas',

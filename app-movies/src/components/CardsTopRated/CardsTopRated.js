@@ -67,7 +67,7 @@ class Cards extends Component {
                   >
                     {this.state.favoritos === movie.id ? "Quitar de favoritos" : 'Agregar a favoritos'}
                   </button>
-                  <Link to={`/PeliculasMejorValorada/${movie.id}`} className="btn btn-primary">
+                  <Link to={`/peliculasmejorvalorada/detalle/${movie.id}`} className="btn btn-primary">
                     Ir a detalle
                   </Link>
                 </div>
@@ -76,7 +76,7 @@ class Cards extends Component {
             : "cargando..."}
 
         </section>
-        <Link to={`/PeliculasMejorValoradas`} className="btn btn-primary">
+        <Link to={`/peliculasmejorvaloradas`} className="btn btn-primary">
           Ver más
         </Link>
       </>
