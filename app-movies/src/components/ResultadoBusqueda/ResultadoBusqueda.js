@@ -5,49 +5,37 @@ import { withRouter } from "react-router-dom";
 
 class ResultadoBusqueda extends Component {
     constructor(props) {
-        super(props);
-        this.state = {
-            busqueda: '',
-            resultados: [],
-        };
-    };
-
-
-    llamadoApi(url, consecuencia){
-        fetch(url)
-            .then( response => response.json())
-            .then(data => consecuencia(data))
-            .catch (error => console.log(error))
-
+    super(props);
+    this.state = {
+      favoritos: null,
+      data: [],
+      verMas: null,
+      
     }
+  }
 
+  componentDidMount() {
 
+    fetch(this.props.api)
+      .then(res => res.json())
+      .then(data => this.setState({
+        data: data.results,
+        numeroDePagina: this.state.numeroDePagina + 1,
+      }))
+      .catch(err => console.log(err))
+  }
 
+  cambiarEstado = (id) => {
+    this.setState({
+      favoritos: this.state.favoritos === id ? null : id
+    });
+  };
 
-
-    componentDidMount() {
-        this.llamadoApi('', this.mostrarSimilares)  //poner aca API//
-    }
-
-    mostrarSimilares = (data) => {
-        this.setState(
-            {
-                pelicula : ''
-            }
-        )
-    }
-
-
-
-    controlarCambios = (evento) => {
-        this.setState({
-            busqueda: this.target.value 
-        });
-    };
-    cambiarEstado = (id) => {
-
-    }
-
+  verDescripcion = (id) => {
+    this.setState({
+      verMas: this.state.verMas === id ? null : id
+    });
+  };
     render() {
         const { pelicula } = this.state;
 
