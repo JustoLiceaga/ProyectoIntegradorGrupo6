@@ -7,7 +7,6 @@ function DetalleMejorValorado(props) {
 
     const id = props.match.params.id;
 
-
     return (
         <React.Fragment>
             <article >

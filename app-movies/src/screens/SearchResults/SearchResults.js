@@ -1,7 +1,7 @@
 import React from "react";
 import ResultadoBusqueda from "../../components/ResultadoBusqueda/ResultadoBusqueda";
 
-function SearchResults() {
+function SearchResults(props) {
     const id = props.match.params.id;
     return (
 
