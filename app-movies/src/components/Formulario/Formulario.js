@@ -14,7 +14,7 @@ class Formulario extends Component {
     prevenirDefault(evento) {
         evento.preventDefault()
 
-        this.props.history.push(`/resultados/${this.state.busqueda}`)
+        this.props.history.push(`/results/${this.state.busqueda}`)
     }
 
     controlarCambios(evento) {

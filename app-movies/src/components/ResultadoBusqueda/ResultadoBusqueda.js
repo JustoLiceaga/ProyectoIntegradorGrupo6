@@ -47,6 +47,7 @@ class ResultadoBusqueda extends Component {
         return (
 
         <>
+        
         <h2 className="alert alert-primary">{this.props.title}</h2>
         <section className="row cards" id="movies">
           {this.state.data && this.state.data.length > 0

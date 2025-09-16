@@ -2,7 +2,7 @@ import React from "react";
 import ResultadoBusqueda from "../../components/ResultadoBusqueda/ResultadoBusqueda";
 
 function SearchResults(props) {
-    const nombre = this.props.match.params.nombre;
+    const nombre = props.match.params.nombre;
     return (
 
 
