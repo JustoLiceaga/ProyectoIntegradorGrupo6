@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+// import { withRouter } from "react-router-dom"; //
 import { Link } from "react-router-dom";
 
 
@@ -15,8 +15,10 @@ class ResultadoBusqueda extends Component {
   }
 
   componentDidMount() {
+    
+    const nombrePeli = this.props.nombre
 
-    fetch(``)
+    fetch(`https://api.themoviedb.org/3/search/movie?api_key=0030cb6d5a827e996db3c37d4e1cadf3&language=es-ES&query=${nombrePeli}`)
       .then(res => res.json())
       .then(data => this.setState({
         data: data.results,
