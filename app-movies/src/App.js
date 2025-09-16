@@ -3,13 +3,11 @@ import { Switch, Route } from 'react-router-dom'
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import Home from './screens/Home/Home';
-
 import error from './screens/404/404';
 import TodasCards from './screens/TodasCards/TodasCards';
 import MejorValoradas from './screens/MejorValoradas/MejorValoradas';
-import DetallePopular from './screens/DetallePopular/DetallePopular';
-import DetalleMejorValorado from './screens/DetalleMejorValorado/DetalleMejorValorado';
 import SearchResults from './screens/SearchResults/SearchResults';
+import DetalleUnico from './screens/DetalleUnico/DetalleUnico';
 import Favorites from './screens/Favorites/Favorites';
 
 
@@ -22,11 +20,10 @@ function App() {
 
       <Switch>
         <Route path = '/' component = {Home} exact = {true} />
-        <Route path = '/Resultados/:nombre' component = {SearchResults}/>
-        <Route path = '/PeliculasPopulares' component = {TodasCards}/>
-        <Route path = '/PeliculasMejorValoradas' component = {MejorValoradas}/>
-        <Route path = '/PeliculasPopulare/:id' component = {DetallePopular}/>
-        <Route path = '/PeliculasMejorValorada/:id' component = {DetalleMejorValorado}/>
+        <Route path = '/results/:nombre' component = {SearchResults}/>
+        <Route path = '/peliculaspopulares' component = {TodasCards}/>
+        <Route path = '/peliculasmejorvaloradas' component = {MejorValoradas}/>
+        <Route path = '/detalle/:id' component = {DetalleUnico}/>
         <Route path = '/favorites' component = {Favorites} ></Route>
 
         <Route path = '' component = {error}/>
