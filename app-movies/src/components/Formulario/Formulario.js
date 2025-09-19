@@ -5,7 +5,6 @@ import { withRouter } from "react-router-dom";
 class Formulario extends Component {
     constructor(props) {
         super(props)
-
         this.state = {
             busqueda: ''
         }
@@ -13,7 +12,6 @@ class Formulario extends Component {
 
     prevenirDefault(evento) {
         evento.preventDefault()
-
         this.props.history.push(`/results/${this.state.busqueda}`)
     }
 
