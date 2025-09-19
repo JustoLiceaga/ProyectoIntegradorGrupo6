@@ -49,46 +49,6 @@ class CardsAll extends Component {
       .catch(err => console.log(err))
   }
 
-
-  agregarAFavoritos = (id) => {
-    let fav = []
-    let favLocal = localStorage.getItem('favoritos')
-    let favParse = JSON.parse(favLocal)
-
-    if (favParse !== null) {
-      favParse.push(id)
-      let favString = JSON.stringify(favParse)
-      localStorage.setItem('favoritos', favString)
-      this.setState({
-        esFavorito: true
-      })
-    } else {
-      fav.push(id)
-      let favString = JSON.stringify(fav)
-      localStorage.setItem('favoritos', favString)
-      this.setState({
-        esFavorito: true
-      })
-    }
-
-  }
-
-  quitarDeFavoritos = (id) => {
-    console.log(id)
-  }
-
-  cambiarEstado = (id) => {
-    this.setState({
-      esFavorito: this.state.esFavorito === id ? null : id
-    });
-  };
-
-  verDescripcion = (id) => {
-    this.setState({
-      verMas: this.state.verMas === id ? null : id
-    });
-  };
-
   render() {
     return (
       <>

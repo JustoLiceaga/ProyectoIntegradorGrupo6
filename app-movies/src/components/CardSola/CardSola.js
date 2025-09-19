@@ -49,8 +49,17 @@ class CardSola extends Component {
   }
 
   quitarDeFavoritos = (id) => {
-    console.log(id)
-  }
+    let favLocal = localStorage.getItem('favoritos');
+    let favParse = JSON.parse(favLocal);
+  
+    if (favParse !== null) {
+      let nuevosFavoritos = favParse.filter(favId => favId !== id);
+      localStorage.setItem('favoritos', JSON.stringify(nuevosFavoritos));
+      this.setState({
+        esFavorito: false
+      });
+    }
+  };
 
   cambiarEstado = (id) => {
     this.setState({

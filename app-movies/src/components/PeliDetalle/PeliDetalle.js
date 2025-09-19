@@ -4,7 +4,7 @@ class PeliDetalle extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            favoritos: null,
+            esFavorito: false,
             pelicula: null,
         }
     }
@@ -20,6 +20,42 @@ class PeliDetalle extends Component {
             }))
             .catch(err => console.log(err))
     }
+
+    agregarAFavoritos = (id) => {
+        let fav = []
+        let favLocal = localStorage.getItem('favoritos')
+        let favParse = JSON.parse(favLocal)
+
+        if (favParse !== null) {
+            favParse.push(id)
+            let favString = JSON.stringify(favParse)
+            localStorage.setItem('favoritos', favString)
+            this.setState({
+                esFavorito: true
+            })
+        } else {
+            fav.push(id)
+            let favString = JSON.stringify(fav)
+            localStorage.setItem('favoritos', favString)
+            this.setState({
+                esFavorito: true
+            })
+        }
+
+    }
+
+    quitarDeFavoritos = (id) => {
+        let favLocal = localStorage.getItem('favoritos');
+        let favParse = JSON.parse(favLocal);
+
+        if (favParse !== null) {
+            let nuevosFavoritos = favParse.filter(favId => favId !== id);
+            localStorage.setItem('favoritos', JSON.stringify(nuevosFavoritos));
+            this.setState({
+                esFavorito: false
+            });
+        }
+    };
 
     cambiarEstado = (id) => {
         this.setState({
@@ -49,15 +85,13 @@ class PeliDetalle extends Component {
                                     ? pelicula.genres.map(g => g.name).join(", ")
                                     : "No disponible"}
                             </p>
-
-
-
-                            <button
-                                onClick={() => this.cambiarEstado(pelicula.id)}
-                                className="btn alert-primary"
-                            >
-                                {this.state.favoritos === pelicula.id ? "Quitar de favoritos" : 'Agregar a favoritos'}
+                            {this.state.esFavorito ? <button onClick={() => this.quitarDeFavoritos(pelicula.id)} className="btn btn-primary">
+                                Quitar de favoritos
                             </button>
+                                :
+                                <button onClick={() => this.agregarAFavoritos(pelicula.id)} className="btn btn-primary">
+                                    Agregar a favoritos
+                                </button>}
                         </div>
                     </article>
                 </section>
