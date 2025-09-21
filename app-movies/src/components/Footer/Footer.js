@@ -5,7 +5,7 @@ import './style.css'
 function Footer() {
     return (
             <footer>
-                <p>Marco Mambretti / Justo Liceaga / Valentin Cagnolatti</p>
+                <p>Marco Mambretti  /  Justo Liceaga  /  Valentin Cagnolatti</p>
             </footer>
     )
     

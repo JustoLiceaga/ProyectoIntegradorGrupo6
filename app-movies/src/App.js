@@ -24,7 +24,7 @@ function App() {
         <Route path = '/peliculaspopulares' component = {TodasCards}/>
         <Route path = '/peliculasmejorvaloradas' component = {MejorValoradas}/>
         <Route path = '/detalle/:id' component = {DetalleUnico}/>
-        <Route path = '/favorites' component = {Favorites} ></Route>
+        <Route path = '/favorites' component = {Favorites} />
 
         <Route path = '' component = {error}/>
 

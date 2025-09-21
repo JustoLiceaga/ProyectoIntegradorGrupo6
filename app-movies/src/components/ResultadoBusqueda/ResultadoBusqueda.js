@@ -9,13 +9,12 @@ class ResultadoBusqueda extends Component {
     this.state = {
       favoritos: null,
       data: [],
-      nombrePeli : this.props.nombre      
+      nombrePeli : this.props.info      
     }
   }
 
   componentDidMount() {
-    
-
+  
     fetch(`https://api.themoviedb.org/3/search/movie?api_key=0030cb6d5a827e996db3c37d4e1cadf3&language=es-ES&query=${this.state.nombrePeli}`)
       .then(res => res.json())
       .then(data => this.setState({

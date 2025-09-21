@@ -5,13 +5,13 @@ class PeliDetalle extends Component {
         super(props);
         this.state = {
             esFavorito: false,
-            pelicula: null,
+            pelicula : [],
         }
     }
 
 
     componentDidMount() {
-        const id = Number(this.props.info)
+        const id = this.props.info
         const api = `https://api.themoviedb.org/3/movie/${id}?language=en-US&api_key=0030cb6d5a827e996db3c37d4e1cadf3`
         fetch(api)
             .then(res => res.json(),)
@@ -65,7 +65,7 @@ class PeliDetalle extends Component {
 
 
     render() {
-        const { pelicula } = this.state;
+        const {pelicula} = this.state;
 
         if (!pelicula) {
             return <p>Cargando...</p>;
