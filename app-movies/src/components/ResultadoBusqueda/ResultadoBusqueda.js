@@ -7,20 +7,37 @@ class ResultadoBusqueda extends Component {
     constructor(props) {
     super(props);
     this.state = {
-      favoritos: null,
       data: [],
-      nombrePeli : this.props.info      
+      loading : false,
     }
   }
 
   componentDidMount() {
-  
-    fetch(`https://api.themoviedb.org/3/search/movie?api_key=0030cb6d5a827e996db3c37d4e1cadf3&language=es-ES&query=${this.state.nombrePeli}`)
+    const nombrePeli = this.props.match.params.nombre;
+    fetch(`https://api.themoviedb.org/3/search/movie?api_key=0030cb6d5a827e996db3c37d4e1cadf3&language=es-ES&query=${nombrePeli}`)
       .then(res => res.json())
       .then(data => this.setState({
-        data: data.results        
+        data: data.results,
+        loading : false,
       }))
       .catch(err => console.log(err))
+  }
+
+  componentDidUpdate(prevProps){
+    let propsAntiguas = prevProps.match.params.nombre
+    let propsActuales = this.props.match.params.nombre
+    
+    if (propsAntiguas !== propsActuales) {
+      
+      fetch(`https://api.themoviedb.org/3/search/movie?api_key=0030cb6d5a827e996db3c37d4e1cadf3&language=es-ES&query=${propsActuales}`)
+      .then(res => res.json())
+      .then(data => this.setState({
+        data: data.results,
+        loading : false             
+      }))
+      .catch(err => console.log(err))
+  }
+    
   }
 
   render() {
@@ -30,7 +47,7 @@ class ResultadoBusqueda extends Component {
         <section className="row cards" id="movies">
           {this.state.data && this.state.data.length > 0
             ? this.state.data.map((movie) => (
-                <CardSola info={movie} />
+                <CardSola info={movie}/>
               ))
             : <p>Cargando...</p>
           }
