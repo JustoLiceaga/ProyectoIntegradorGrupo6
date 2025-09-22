@@ -12,6 +12,14 @@ class CardsFavoritos extends Component {
     }
   }
 
+  QuitarFavs = (id) => { 
+    let filtrados = this.state.data.filter((ch) => ch.id !== id);
+
+    this.setState({
+      data: filtrados
+    })
+  }
+
   componentDidMount() {
     let favLocal = localStorage.getItem('favoritos');
     let favParse = JSON.parse(favLocal);
@@ -38,7 +46,7 @@ class CardsFavoritos extends Component {
         <section className="row cards" id="movies">
           {this.state.data && this.state.data.length > 0
             ? this.state.data.map((movie) => (
-                <CardSola info={movie} />
+                <CardSola info={movie} QuitarFavs={( ) => this.QuitarFavs(movie.id)} />
               ))
             : <p>Cargando...</p>
           }
