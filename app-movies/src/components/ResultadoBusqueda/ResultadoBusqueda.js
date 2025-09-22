@@ -25,7 +25,7 @@ class ResultadoBusqueda extends Component {
 
   render() {
     return (
-      <>
+      <React.Fragment>
         <h2 className="alert alert-primary"> Resultados de Busqueda</h2>
         <section className="row cards" id="movies">
           {this.state.data && this.state.data.length > 0
@@ -35,7 +35,7 @@ class ResultadoBusqueda extends Component {
             : <p>Cargando...</p>
           }
         </section>
-      </>
+      </React.Fragment>
     );
   }
 }

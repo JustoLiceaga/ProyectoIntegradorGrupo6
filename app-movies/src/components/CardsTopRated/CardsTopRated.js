@@ -40,48 +40,10 @@ class CardsTopRated extends Component {
       .catch(err => console.log(err))
     }
 
-  agregarAFavoritos = (id) => {
-    let fav = []
-    let favLocal = localStorage.getItem('favoritos')
-    let favParse = JSON.parse(favLocal)
-
-    if (favParse !== null) {
-      favParse.push(id)
-      let favString = JSON.stringify(favParse)
-      localStorage.setItem('favoritos', favString)
-      this.setState({
-        esFavorito: true
-      })
-    } else {
-      fav.push(id)
-      let favString = JSON.stringify(fav)
-      localStorage.setItem('favoritos', favString)
-      this.setState({
-        esFavorito: true
-      })
-    }
-
-  }
-
-  quitarDeFavoritos = (id) => {
-    console.log(id)
-  }
-
-  cambiarEstado = (id) => {
-    this.setState({
-      esFavorito: this.state.esFavorito === id ? null : id
-    });
-  };
-
-  verDescripcion = (id) => {
-    this.setState({
-      verMas: this.state.verMas === id ? null : id
-    });
-  };
 
   render() {
     return (
-      <>
+      <React.Fragment>
         <h2 className="alert alert-primary"> Peliculas mejor valoradas de la semana</h2>
         <section className="row cards" id="movies">
           {this.state.data && this.state.data.length > 0
@@ -94,7 +56,7 @@ class CardsTopRated extends Component {
         <Link to={`/peliculasmejorvaloradas`} className="btn btn-primary">
           Ver más
         </Link>
-      </>
+      </React.Fragment>
     );
   }
 }

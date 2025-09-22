@@ -11,6 +11,7 @@ class CardsAll extends Component {
       data: [],
       verMas: false,
       numeroDePagina: 1,
+      busqueda: "",
     }
   }
 
@@ -24,7 +25,7 @@ class CardsAll extends Component {
           esFavoritoavoritos: true
         })
       }
-      
+
     }
 
     fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${this.state.numeroDePagina}&sort_by=popularity.desc&api_key=0030cb6d5a827e996db3c37d4e1cadf3`)
@@ -49,20 +50,43 @@ class CardsAll extends Component {
       .catch(err => console.log(err))
   }
 
+  prevenirDefault(evento) {
+    evento.preventDefault()
+
+  }
+
+  controlarCambios(evento) {
+    this.setState({
+      busqueda: evento.target.value
+    })
+
+  }
+
   render() {
+    const peliculasFiltradas = this.state.data.filter((movie) =>
+      movie.title.toLowerCase().includes(this.state.busqueda.toLowerCase())
+    );
     return (
-      <>
+      <React.Fragment>
         <h2 className="alert alert-primary"> Peliculas populares de la semana</h2>
+        <form onSubmit={(event) => this.prevenirDefault(event)}>
+          <input
+            type="text"
+            onChange={(event) => this.controlarCambios(event)}
+            value={this.state.busqueda}
+            placeholder="Filtrar..." />
+          <button type="submit">Filtrar</button>
+        </form>
         <section className="row cards" id="movies">
-          {this.state.data && this.state.data.length > 0
-            ? this.state.data.map((movie) => (
+          {peliculasFiltradas && peliculasFiltradas.length > 0
+            ? peliculasFiltradas.map((movie) => (
               <CardSola info={movie} />
             ))
             : <p>Cargando...</p>
           }
         </section>
-        <button onClick={()=> this.cargarPaginaSiguiente()} className="btn btn-primary"> Cargar mas peliculas </button>
-      </>
+        <button onClick={() => this.cargarPaginaSiguiente()} className="btn btn-primary"> Cargar mas peliculas </button>
+      </React.Fragment>
     );
   }
 }

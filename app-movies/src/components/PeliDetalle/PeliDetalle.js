@@ -5,13 +5,24 @@ class PeliDetalle extends Component {
         super(props);
         this.state = {
             esFavorito: false,
-            pelicula : [],
+            pelicula: null,
         }
     }
 
 
     componentDidMount() {
         const id = this.props.info
+
+        let favLocal = localStorage.getItem('favoritos')
+        let favParse = JSON.parse(favLocal)
+        if (favParse !== null) {
+            if (favParse.includes(this.props.id)) {
+                this.setState({
+                    esFavoritoavoritos: true
+                })
+            }
+        }
+
         const api = `https://api.themoviedb.org/3/movie/${id}?language=en-US&api_key=0030cb6d5a827e996db3c37d4e1cadf3`
         fetch(api)
             .then(res => res.json(),)
@@ -20,31 +31,30 @@ class PeliDetalle extends Component {
             }))
             .catch(err => console.log(err))
     }
+        agregarAFavoritos = (id) => {
+            let fav = []
+            let favLocal = localStorage.getItem('favoritos')
+            let favParse = JSON.parse(favLocal)
 
-    agregarAFavoritos = (id) => {
-        let fav = []
-        let favLocal = localStorage.getItem('favoritos')
-        let favParse = JSON.parse(favLocal)
-
-        if (favParse !== null) {
-            favParse.push(id)
-            let favString = JSON.stringify(favParse)
-            localStorage.setItem('favoritos', favString)
-            this.setState({
-                esFavorito: true
-            })
-        } else {
-            fav.push(id)
-            let favString = JSON.stringify(fav)
-            localStorage.setItem('favoritos', favString)
-            this.setState({
-                esFavorito: true
-            })
+            if (favParse !== null) {
+                favParse.push(id)
+                let favString = JSON.stringify(favParse)
+                localStorage.setItem('favoritos', favString)
+                this.setState({
+                    esFavorito: true
+                })
+            } else {
+                fav.push(id)
+                let favString = JSON.stringify(fav)
+                localStorage.setItem('favoritos', favString)
+                this.setState({
+                    esFavorito: true
+                })
+            }
+        
         }
 
-    }
-
-    quitarDeFavoritos = (id) => {
+        quitarDeFavoritos = (id) => {
         let favLocal = localStorage.getItem('favoritos');
         let favParse = JSON.parse(favLocal);
 
@@ -55,23 +65,23 @@ class PeliDetalle extends Component {
                 esFavorito: false
             });
         }
-    };
+    }
 
-    cambiarEstado = (id) => {
-        this.setState({
-            favoritos: this.state.favoritos === id ? null : id
-        });
-    };
+        
+
+        
+    
+
 
 
     render() {
-        const {pelicula} = this.state;
+        const { pelicula } = this.state;
 
         if (!pelicula) {
             return <p>Cargando...</p>;
         }
         return (
-            <>
+            <React.Fragment>
                 <section className="row cards" id="movies">
                     <article className="single-card-movie" key={pelicula.id}>
                         <img src={`https://image.tmdb.org/t/p/w500${pelicula.backdrop_path}`} className="card-img-top" alt={pelicula.title} />
@@ -83,19 +93,20 @@ class PeliDetalle extends Component {
                             <p>Géneros:{" "}
                                 {pelicula.genres && pelicula.genres.length > 0
                                     ? pelicula.genres.map(g => g.name).join(", ")
-                                    : "No disponible"}
+                                    : "No tiene"}
                             </p>
-                            {this.state.esFavorito ? <button onClick={() => this.quitarDeFavoritos(pelicula.id)} className="btn btn-primary">
+                            {this.state.esFavorito ? (
+                            <button onClick={() => this.quitarDeFavoritos(pelicula.id)} className="btn btn-primary">
                                 Quitar de favoritos
                             </button>
-                                :
+                             ) :  (
                                 <button onClick={() => this.agregarAFavoritos(pelicula.id)} className="btn btn-primary">
                                     Agregar a favoritos
-                                </button>}
+                                </button>)}
                         </div>
                     </article>
                 </section>
-            </>
+            </React.Fragment>
         );
     }
 }

@@ -42,7 +42,7 @@ class Cards extends Component {
 
   render() {
     return (
-      <>
+      <React.Fragment>
         <h2 className="alert alert-primary"> Peliculas populares de la semana</h2>
         <section className="row cards" id="movies">
           {this.state.data && this.state.data.length > 0
@@ -55,7 +55,7 @@ class Cards extends Component {
         <Link to={`/peliculaspopulares`} className="btn btn-primary">
           Ver más
         </Link>
-      </>
+      </React.Fragment>
     );
   }
 }

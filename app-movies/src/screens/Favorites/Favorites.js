@@ -3,13 +3,13 @@ import CardsFavoritos from '../../components/CardsFavoritos/CardsFavoritos'
 
 
 function Favorites() {
-    return(
+    return (
         <React.Fragment>
-        <h1>Materia Gris Movies</h1>
-    <main>
-        <CardsFavoritos/>
-    </main>
-    </React.Fragment>
+            <h1>Materia Gris Movies</h1>
+            <main>
+                <CardsFavoritos />
+            </main>
+        </React.Fragment>
 
     )
 }

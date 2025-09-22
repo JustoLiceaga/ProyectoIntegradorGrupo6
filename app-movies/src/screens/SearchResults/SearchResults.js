@@ -11,7 +11,7 @@ function SearchResults(props) {
             <article>
                 <ResultadoBusqueda info={nombre} ></ResultadoBusqueda>
             </article>
-            
+
 
         </React.Fragment>
     )

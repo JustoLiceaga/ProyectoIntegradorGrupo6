@@ -103,3 +103,14 @@ ul, ol {
   color: #fff;
 }
 
+@media (max-width: 992px) {
+  .single-card-movie {
+    flex: 1 1 calc(48% - 1rem);
+  }
+}
+
+@media (max-width: 576px) {
+  .single-card-movie {
+    flex: 1 1 100%;
+  }
+}

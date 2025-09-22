@@ -76,7 +76,7 @@ class CardSola extends Component {
   render() {
     let info = this.props.info
     return (
-      <>
+      <React.Fragment>
           
               <article className="single-card-movie" key={info.id}>
                 <img src={`https://image.tmdb.org/t/p/w500${info.backdrop_path}`} className="card-img-top" alt={info.title} />
@@ -106,7 +106,7 @@ class CardSola extends Component {
                 </div>
               </article>
             
-      </>
+      </React.Fragment>
     );
   }
 }

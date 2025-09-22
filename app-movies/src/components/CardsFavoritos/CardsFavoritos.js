@@ -33,7 +33,7 @@ class CardsFavoritos extends Component {
 
   render() {
     return (
-      <>
+      <React.Fragment>
         <h2 className="alert alert-primary"> Peliculas favoritas</h2>
         <section className="row cards" id="movies">
           {this.state.data && this.state.data.length > 0
@@ -43,7 +43,7 @@ class CardsFavoritos extends Component {
             : <p>Cargando...</p>
           }
         </section>
-      </>
+      </React.Fragment>
     );
   }
 }

@@ -16,22 +16,22 @@ function App() {
 
   return (
     <React.Fragment>
-      <Navbar/>
+      <Navbar />
 
       <Switch>
-        <Route path = '/' component = {Home} exact = {true} />
-        <Route path = '/results/:nombre' component = {SearchResults}/>
-        <Route path = '/peliculaspopulares' component = {TodasCards}/>
-        <Route path = '/peliculasmejorvaloradas' component = {MejorValoradas}/>
-        <Route path = '/detalle/:id' component = {DetalleUnico}/>
-        <Route path = '/favorites' component = {Favorites} />
+        <Route path='/' component={Home} exact={true} />
+        <Route path='/results/:nombre' component={SearchResults} />
+        <Route path='/peliculaspopulares' component={TodasCards} />
+        <Route path='/peliculasmejorvaloradas' component={MejorValoradas} />
+        <Route path='/detalle/:id' component={DetalleUnico} />
+        <Route path='/favorites' component={Favorites} />
 
-        <Route path = '' component = {error}/>
+        <Route path='' component={error} />
 
 
-      </Switch>  
+      </Switch>
 
-    <Footer/>
+      <Footer />
     </React.Fragment>
   );
 }

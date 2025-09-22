@@ -11,6 +11,7 @@ class CardsValoradas extends Component {
       data: [],
       verMas: false,
       numeroDePagina: 1,
+      busqueda: "",
     }
   }
 
@@ -24,7 +25,7 @@ class CardsValoradas extends Component {
           esFavoritoavoritos: true
         })
       }
-      
+
     }
 
     fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${this.state.numeroDePagina}&sort_by=vote_average.desc&without_genres=99,10755&vote_count.gte=200&api_key=0030cb6d5a827e996db3c37d4e1cadf3`)
@@ -50,59 +51,45 @@ class CardsValoradas extends Component {
   }
 
 
-  agregarAFavoritos = (id) => {
-    let fav = []
-    let favLocal = localStorage.getItem('favoritos')
-    let favParse = JSON.parse(favLocal)
-
-    if (favParse !== null) {
-      favParse.push(id)
-      let favString = JSON.stringify(favParse)
-      localStorage.setItem('favoritos', favString)
-      this.setState({
-        esFavorito: true
-      })
-    } else {
-      fav.push(id)
-      let favString = JSON.stringify(fav)
-      localStorage.setItem('favoritos', favString)
-      this.setState({
-        esFavorito: true
-      })
-    }
+  prevenirDefault(evento) {
+    evento.preventDefault()
 
   }
 
-  quitarDeFavoritos = (id) => {
-    console.log(id)
+  controlarCambios(evento) {
+    this.setState({
+      busqueda: evento.target.value
+    })
+
   }
 
-  cambiarEstado = (id) => {
-    this.setState({
-      esFavorito: this.state.esFavorito === id ? null : id
-    });
-  };
-
-  verDescripcion = (id) => {
-    this.setState({
-      verMas: this.state.verMas === id ? null : id
-    });
-  };
 
   render() {
+    const peliculasFiltradas = this.state.data.filter((movie) =>
+      movie.title.toLowerCase().includes(this.state.busqueda.toLowerCase())
+    );
+
     return (
-      <>
+      <React.Fragment>
         <h2 className="alert alert-primary"> Peliculas mejor valoradas de la semana</h2>
+        <form onSubmit={(event) => this.prevenirDefault(event)}>
+          <input
+            type="text"
+            onChange={(event) => this.controlarCambios(event)}
+            value={this.state.busqueda}
+            placeholder="Filtrar..." />
+          <button type="submit">Filtrar</button>
+        </form>
         <section className="row cards" id="movies">
-          {this.state.data && this.state.data.length > 0
-            ? this.state.data.map((movie) => (
+          {peliculasFiltradas && peliculasFiltradas.length > 0
+            ? peliculasFiltradas.map((movie) => (
               <CardSola info={movie} />
             ))
             : <p>Cargando...</p>
           }
         </section>
-        <button onClick={()=> this.cargarPaginaSiguiente()} className="btn btn-primary"> Cargar mas peliculas </button>
-      </>
+        <button onClick={() => this.cargarPaginaSiguiente()} className="btn btn-primary"> Cargar mas peliculas </button>
+      </React.Fragment>
     );
   }
 }

@@ -10,7 +10,7 @@ function DetalleUnico(props) {
     return (
         <React.Fragment>
             <article >
-            <PeliDetalle info={id} />
+                <PeliDetalle info={id} />
             </article>
         </React.Fragment>
     )
